@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 style="text-align:center;margin-top:20px;">MSP Data</h2>
+<div class="card">
+  <input id="search" placeholder="Search MSP..." onkeyup="filterMsp()" style="width:100%; padding:8px; margin-bottom:10px;">
+  <table id="mspTable">
+    <tr><th>Crop</th><th>State</th><th>Year</th><th>Price/Quintal</th></tr>
+    {% for m in msp_data %}
+      <tr>
+        <td>{{ m.crop_name }}</td>
+        <td>{{ m.state }}</td>
+        <td>{{ m.year }}</td>
+        <td>{{ m.price_per_quintal }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+  {% if not msp_data %}
+    <p style="margin-top:10px;">No MSP data found.</p>
+  {% endif %}
+</div>
+
+<script>
+function filterMsp(){
+  var input = document.getElementById('search').value.toLowerCase();
+  var rows = document.querySelectorAll('#mspTable tr');
+  for(var i=1;i<rows.length;i++){
+    rows[i].style.display = rows[i].innerText.toLowerCase().includes(input) ? '' : 'none';
+  }
+}
+</script>
+{% endblock %}

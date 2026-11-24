@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <h2>Prediction Result</h2>
+  <img src="{{ url_for('uploaded_file', filename=filename) }}" style="max-width:100%; border-radius:8px;">
+  <h3>Disease: {{ disease }}</h3>
+  <h4>Severity: {{ severity }}</h4>
+  <a href="{{ url_for('treatments', disease=disease) }}"><button>View Treatments</button></a>
+</div>
+{% endblock %}

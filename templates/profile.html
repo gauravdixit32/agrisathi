@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <h2>Profile</h2>
+  <form method="POST">
+    <label>Age</label>
+    <input type="number" name="age" value="{{ profile.age if profile else '' }}">
+    <label>Land Size</label>
+    <input type="number" step="0.01" name="land_size" value="{{ profile.land_size if profile else '' }}">
+    <label>Land Unit</label>
+    <select name="land_unit">
+      <option value="" {% if not profile or not profile.land_unit %}selected{% endif %}></option>
+      <option value="acre" {% if profile and profile.land_unit == 'acre' %}selected{% endif %}>acre</option>
+      <option value="hectare" {% if profile and profile.land_unit == 'hectare' %}selected{% endif %}>hectare</option>
+    </select>
+    <label>State</label>
+    <input type="text" name="state" value="{{ profile.state if profile else '' }}">
+    <label>District</label>
+    <input type="text" name="district" value="{{ profile.district if profile else '' }}">
+    <label>Village</label>
+    <input type="text" name="village" value="{{ profile.village if profile else '' }}">
+    <label>Language</label>
+    <input type="text" name="language" value="{{ profile.language if profile else '' }}">
+    <button type="submit">Save Profile</button>
+  </form>
+</div>
+{% endblock %}

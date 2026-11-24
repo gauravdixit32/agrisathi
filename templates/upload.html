@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <h2>Upload Crop Image</h2>
+  <form method="POST" enctype="multipart/form-data">
+    <input type="file" name="file" accept="image/*" required>
+    <button type="submit">Predict Disease</button>
+  </form>
+</div>
+
+{% if prediction %}
+  <div class="card">
+    <h3>Prediction Result</h3>
+    <p><strong>Disease:</strong> {{ prediction.disease }}</p>
+    <p><strong>Confidence:</strong> {{ prediction.confidence }}</p>
+    <p><strong>Severity (segmentation):</strong> {{ prediction.severity }}</p>
+    <p>{{ prediction.description }}</p>
+    <p>{{ prediction.treatment }}</p>
+    {% if prediction.remedies %}
+      <h4>Remedies</h4>
+      {% for r in prediction.remedies %}
+        <div style="border:1px solid #ddd; padding:8px; margin:4px 0;">
+          <strong>{{ r.disease_name }} ({{ r.remedy_type }})</strong>
+          <p>{{ r.description }}</p>
+        </div>
+      {% endfor %}
+    {% endif %}
+    <img src="{{ prediction.image_url }}" style="max-width:200px;margin:10px;" alt="Uploaded">
+    <img src="{{ prediction.mask_url }}" style="max-width:200px;margin:10px;" alt="Mask">
+  </div>
+{% endif %}
+{% endblock %}

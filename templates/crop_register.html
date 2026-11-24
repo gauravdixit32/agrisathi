@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <h2>Register Crop</h2>
+  <form method="POST">
+    <label>Crop</label>
+    <select name="crop_id" required>
+      <option value=""></option>
+      {% for c in crops %}
+        <option value="{{ c.crop_id }}">{{ c.crop_name }} ({{ c.season }})</option>
+      {% endfor %}
+    </select>
+    <label>Sowing Date</label>
+    <input type="date" name="sowing_date">
+    <button type="submit">Register Crop</button>
+  </form>
+</div>
+
+{% if farmer_crops %}
+<div class="card" style="margin-top: 20px;">
+  <h2>Your Registered Crops</h2>
+  <table>
+    <tr><th>Crop</th><th>Season</th><th>Sowing Date</th></tr>
+    {% for fc in farmer_crops %}
+      <tr>
+        <td>{{ fc.crop_name }}</td>
+        <td>{{ fc.season }}</td>
+        <td>{{ fc.sowing_date }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+</div>
+{% endif %}
+{% endblock %}

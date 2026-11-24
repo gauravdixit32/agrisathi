@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>AgriSathi</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <header>AgriSathi</header>
+
+  <nav class="nav">
+    {% if session.user_name %}
+      <span class="welcome-message">Welcome, {{ session.user_name }}</span>
+      <div class="nav-links">
+        <a href="{{ url_for('home') }}" class="nav-link">Home</a>
+        </a>
+        <a href="{{ url_for('profile') }}" class="nav-link">Profile</a>
+        <a href="{{ url_for('crop_register') }}" class="nav-link">Crops</a>
+        <a href="{{ url_for('farm_location') }}" class="nav-link">Location</a>
+        <a href="{{ url_for('upload') }}" class="nav-link">Upload</a>
+        <a href="{{ url_for('schemes') }}" class="nav-link">Schemes</a>
+        <a href="{{ url_for('msp') }}" class="nav-link">MSP</a>
+        <a href="{{ url_for('logout') }}" class="nav-link logout-link">Logout</a>
+      </div>
+    {% else %}
+      <div class="auth-links">
+        <a href="{{ url_for('login') }}" class="nav-link">Login</a>
+        <a href="{{ url_for('register') }}" class="nav-link register-link">Register</a>
+      </div>
+    {% endif %}
+  </nav>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <div class="container">
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="flash-area">
+          {% for m in messages %}
+            <div class="flash">{{ m }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    {% block content %}{% endblock %}
+  </div>
+
+  <footer>
+    &copy; {{ current_year }} AgriSathi. All rights reserved.
+  </footer>
+</body>
+</html>

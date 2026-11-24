@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <h2>Welcome, {{ user_name }}!</h2>
+  <p>Select an option:</p>
+  <div class="button-container">
+    <a href="{{ url_for('upload') }}" class="btn btn-primary">Upload Crop Image</a>
+    <a href="{{ url_for('profile') }}" class="btn btn-primary">Profile</a>
+    <a href="{{ url_for('crop_register') }}" class="btn btn-primary">Register Crop</a>
+    <a href="{{ url_for('farm_location') }}" class="btn btn-primary">Farm Location</a>
+    <a href="{{ url_for('schemes') }}" class="btn btn-primary">Government Schemes</a>
+    <a href="{{ url_for('msp') }}" class="btn btn-primary">MSP Data</a>
+  </div>
+</div>
+
+<style>
+.button-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.button-container a {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.btn-info {
+  margin-top: 20px;
+  background-color: #17a2b8;
+  border-color: #17a2b8;
+}
+
+.btn-info:hover {
+  background-color: #138496;
+  border-color: #117a8b;
+}
+</style>
+{% endblock %}

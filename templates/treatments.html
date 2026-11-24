@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <h2>Treatments for {{ disease }}</h2>
+  {% if treatments %}
+    {% for t in treatments %}
+      <div class="treatment">
+        <h3>{{ t.disease_name }}</h3>
+        <p>{{ t.treatment_text }}</p>
+        <p><strong>Organic:</strong> {{ t.organic_option }}</p>
+      </div>
+    {% endfor %}
+  {% else %}
+    <p>No treatments found for this disease.</p>
+  {% endif %}
+</div>
+{% endblock %}

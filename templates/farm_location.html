@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <h2>Farm Location</h2>
+  <form method="POST">
+    <label>State</label>
+    <input type="text" name="state" value="{{ location.state if location else '' }}">
+    <label>Village</label>
+    <input type="text" name="village" value="{{ location.village if location else '' }}">
+    <label>District</label>
+    <input type="text" name="district" value="{{ location.district if location else '' }}">
+    <button type="submit">Save Location</button>
+  </form>
+</div>
+{% endblock %}

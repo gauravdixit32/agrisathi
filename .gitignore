@@ -1,0 +1,7 @@
+.env
+.venv/
+__pycache__/
+*.py[cod]
+*.log
+leaf_disease_classifier_best.pth
+leaf_disease_unet_best.pth
